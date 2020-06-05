@@ -56,9 +56,11 @@ class OneLayerBase(nn.Module):
         # )
 
         self.fc1 = nn.Linear(INPUT_DIM, num_classes)
+        self.dropout1 = nn.Dropout(p=0),
 
     def forward(self, x):
         x = x.view(x.size(0), -1)
+        x = self.dropout1(x)
         x = self.fc1(x)
         print(x.size())
         return x
