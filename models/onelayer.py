@@ -9,7 +9,7 @@ import torch.nn as nn
 import curves
 
 INPUT_DIM = 32*32*3
-N_HIDDEN_NODES = 10
+N_HIDDEN_NODES = INPUT_DIM
 DROPOUT_PROB = .5
 
 __all__ = ['OneLayer', 'OneLayerBN']
