@@ -12,7 +12,7 @@ INPUT_DIM = 512
 N_HIDDEN_NODES = 10
 DROPOUT_PROB = .5
 
-__all__ = ['OneLayerReal', 'OneLayerBNActual']
+__all__ = ['OneLayer', 'OneLayerBN']
 
 
 def make_layers(config, batch_norm=False, fix_points=None):
