@@ -76,14 +76,14 @@ class OneLayerCurve(nn.Module):
         return x
 
 
-class OneLayerCurve:
+class OneLayer:
     base = OneLayerBase
     curve = OneLayerCurve
     kwargs = {
         'batch_norm': False
     }
 
-class OneLayerCurveBN:
+class OneLayerBN:
     base = OneLayerBase
     curve = OneLayerCurve
     kwargs = {
