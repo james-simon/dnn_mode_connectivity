@@ -61,7 +61,6 @@ class OneLayerBase(nn.Module):
         x = x.view(x.size(0), -1)
         x = self.fc1(x)
         print(x.size())
-        print("alsjfdalksjeflkasjf")
         return x
 
 
