@@ -82,9 +82,9 @@ class OneLayerCurve(nn.Module):
     def __init__(self, num_classes, fix_points, depth=16, batch_norm=False):
         super(OneLayerCurve, self).__init__()
 
-        self.fc1 = curves.Linear(INPUT_DIM, N_HIDDEN_NODES)
+        self.fc1 = curves.Linear(INPUT_DIM, N_HIDDEN_NODES, fix_points=fix_points)
         self.relu1 = nn.ReLU(inplace=True)
-        self.fc2 = (N_HIDDEN_NODES, num_classes)
+        self.fc2 = curves.Linear(N_HIDDEN_NODES, num_classes, fix_points=fix_points)
 
     def forward(self, x, coeffs_t):
         x = x.view(x.size(0), -1)
