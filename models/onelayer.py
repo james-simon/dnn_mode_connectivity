@@ -47,9 +47,10 @@ class OneLayerBase(nn.Module):
         super(OneLayerBase, self).__init__()
 
         self.net = nn.Sequential(
-            nn.Linear(INPUT_DIM, N_HIDDEN_NODES),
-            nn.ReLU(inplace=True),
-            nn.Linear(N_HIDDEN_NODES, num_classes),
+            # nn.Linear(INPUT_DIM, N_HIDDEN_NODES),
+            # nn.ReLU(inplace=True),
+            # nn.Linear(N_HIDDEN_NODES, num_classes),
+            nn.Linear(INPUT_DIM, num_classes),
         )
 
     def forward(self, x):
