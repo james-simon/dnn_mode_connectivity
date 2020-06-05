@@ -49,12 +49,11 @@ class OneLayerBase(nn.Module):
 
         print("initialized OneLayer")
 
-        # self.net = nn.Sequential(
-        #     # nn.Linear(INPUT_DIM, N_HIDDEN_NODES),
-        #     # nn.ReLU(inplace=True),
-        #     # nn.Linear(N_HIDDEN_NODES, num_classes),
-        #     nn.Linear(INPUT_DIM, num_classes),
-        # )
+        self.net = nn.Sequential(
+            nn.Linear(INPUT_DIM, N_HIDDEN_NODES),
+            nn.ReLU(inplace=True),
+            nn.Linear(N_HIDDEN_NODES, num_classes),
+        )
 
         self.fc1 = nn.Linear(INPUT_DIM, num_classes)
         self.dropout1 = nn.Dropout(p=0),
@@ -67,9 +66,9 @@ class OneLayerBase(nn.Module):
         # print(x)
 
         x = x.view(x.size(0), -1)
-        x = self.fc1(x)
+        x = self.net(x)
 
-        ones = torch.zeros([1, INPUT_DIM]).cuda()
+        # ones = torch.zeros([1, INPUT_DIM]).cuda()
 
         # print("dummy output:")
         # print(self.fc1(ones))
