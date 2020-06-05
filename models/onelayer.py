@@ -60,21 +60,21 @@ class OneLayerBase(nn.Module):
         self.dropout1 = nn.Dropout(p=0),
 
     def forward(self, x):
-        print("-"*50)
-        print("data block size:")
-        print(x.size())
-        print("data:")
-        print(x)
+        # print("-"*50)
+        # print("data block size:")
+        # print(x.size())
+        # print("data:")
+        # print(x)
 
         x = x.view(x.size(0), -1)
         x = self.fc1(x)
 
         ones = torch.zeros([1, INPUT_DIM]).cuda()
 
-        print("dummy output:")
-        print(self.fc1(ones))
-        print("output:")
-        print(x)
+        # print("dummy output:")
+        # print(self.fc1(ones))
+        # print("output:")
+        # print(x)
 
         return x
 
