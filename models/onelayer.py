@@ -64,7 +64,7 @@ class OneLayerBase(nn.Module):
         x = self.fc1(x)
         print(x.size())
 
-        ones = torch.zeros([1, INPUT_DIM])
+        ones = torch.zeros([1, INPUT_DIM]).cuda()
         print(self.fc1(ones))
 
         return x
