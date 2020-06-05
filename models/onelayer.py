@@ -8,7 +8,7 @@ import torch.nn as nn
 
 import curves
 
-INPUT_DIM = 512
+INPUT_DIM = 32*32*3
 N_HIDDEN_NODES = 10
 DROPOUT_PROB = .5
 
