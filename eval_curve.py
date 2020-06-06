@@ -101,7 +101,7 @@ def evaluate_curve(dir='/tmp/curve/', ckpt=None, num_points=61, dataset='CIFAR10
     
     previous_weights = None
     
-    columns = ['t', 'Train loss', 'Train nll', 'Train error (%)', 'Test nll', 'Test error (%)']
+    columns = ['t', 'Train loss', 'Train nll', 'Train error (%)', 'Test nll', 'Test error (%)', 'Distance']
     
     t = torch.FloatTensor([0.0]).cuda()
     for i, t_value in enumerate(ts):
@@ -123,7 +123,7 @@ def evaluate_curve(dir='/tmp/curve/', ckpt=None, num_points=61, dataset='CIFAR10
         te_acc[i] = te_res['accuracy']
         te_err[i] = 100.0 - te_acc[i]
     
-        values = [t, tr_loss[i], tr_nll[i], tr_err[i], te_nll[i], te_err[i]]
+        values = [t, tr_loss[i], tr_nll[i], tr_err[i], te_nll[i], te_err[i], dl[i]]
         table = tabulate.tabulate([values], columns, tablefmt='simple', floatfmt='10.4f')
         if i % 40 == 0:
             table = table.split('\n')

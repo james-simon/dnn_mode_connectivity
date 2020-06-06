@@ -10,7 +10,7 @@ import torch.nn as nn
 import curves
 
 INPUT_DIM = 32*32*3
-N_HIDDEN_NODES = INPUT_DIM
+N_HIDDEN_NODES = 5*INPUT_DIM
 DROPOUT_PROB = .5
 
 __all__ = ['OneLayer', 'OneLayerBN']
@@ -54,9 +54,6 @@ class OneLayerBase(nn.Module):
             nn.ReLU(inplace=True),
             nn.Linear(N_HIDDEN_NODES, num_classes),
         )
-
-        self.fc1 = nn.Linear(INPUT_DIM, num_classes)
-        self.dropout1 = nn.Dropout(p=0),
 
     def forward(self, x):
         # print("-"*50)
@@ -109,4 +106,3 @@ class OneLayerBN:
     kwargs = {
         'batch_norm': True
     }
-
