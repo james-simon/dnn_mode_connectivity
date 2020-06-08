@@ -49,11 +49,12 @@ class OneLayerBase(nn.Module):
 
         print("initialized OneLayer")
 
-        self.net = nn.Sequential(
-            nn.Linear(INPUT_DIM, N_HIDDEN_NODES),
-            nn.ReLU(inplace=True),
-            nn.Linear(N_HIDDEN_NODES, num_classes),
-        )
+        self.fc1 = nn.Linear(INPUT_DIM, N_HIDDEN_NODES, bias=False)
+        self.relu1 = nn.ReLU(inplace=True)
+        self.fc2 = nn.Linear(N_HIDDEN_NODES, num_classes, bias=False)
+
+        nn.init.xavier_uniform(self.fc1.weight)
+        nn.init.xavier_uniform(self.fc2.weight)
 
     def forward(self, x):
         # print("-"*50)
@@ -63,8 +64,10 @@ class OneLayerBase(nn.Module):
         # print(x)
 
         x = x.view(x.size(0), -1)
-        x = self.net(x)
-
+        x = self.fc1(x)
+        x = self.relu1(x)
+        x = self.fc2(x)
+        
         # ones = torch.zeros([1, INPUT_DIM]).cuda()
 
         # print("dummy output:")
@@ -79,9 +82,9 @@ class OneLayerCurve(nn.Module):
     def __init__(self, num_classes, fix_points, depth=16, batch_norm=False):
         super(OneLayerCurve, self).__init__()
 
-        self.fc1 = curves.Linear(INPUT_DIM, N_HIDDEN_NODES, fix_points=fix_points)
+        self.fc1 = curves.Linear(INPUT_DIM, N_HIDDEN_NODES, fix_points=fix_points, bias=False)
         self.relu1 = nn.ReLU(inplace=True)
-        self.fc2 = curves.Linear(N_HIDDEN_NODES, num_classes, fix_points=fix_points)
+        self.fc2 = curves.Linear(N_HIDDEN_NODES, num_classes, fix_points=fix_points, bias=False)
 
     def forward(self, x, coeffs_t):
         x = x.view(x.size(0), -1)
