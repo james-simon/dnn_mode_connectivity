@@ -56,8 +56,8 @@ class OneLayerBase(nn.Module):
         nn.init.xavier_uniform(self.fc1.weight)
         nn.init.xavier_uniform(self.fc2.weight)
 
-        self.fc1.weight.data /= 100.0
-        self.fc2.weight.data /= 100.0
+        self.fc1.weight.data *= 100.0
+        self.fc2.weight.data *= 100.0
 
     def forward(self, x):
         # print("-"*50)
