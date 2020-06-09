@@ -12,6 +12,7 @@ import curves
 INPUT_DIM = 32*32*3
 N_HIDDEN_NODES = 5*INPUT_DIM
 DROPOUT_PROB = .5
+INITIALIZATION_COEFFICIENT = 1
 
 __all__ = ['OneLayer', 'OneLayerBN']
 
@@ -56,8 +57,8 @@ class OneLayerBase(nn.Module):
         nn.init.xavier_uniform(self.fc1.weight)
         nn.init.xavier_uniform(self.fc2.weight)
 
-        self.fc1.weight.data *= 100.0
-        self.fc2.weight.data *= 100.0
+        self.fc1.weight.data *= INITIALIZATION_COEFFICIENT
+        self.fc2.weight.data *= INITIALIZATION_COEFFICIENT
 
     def forward(self, x):
         # print("-"*50)
